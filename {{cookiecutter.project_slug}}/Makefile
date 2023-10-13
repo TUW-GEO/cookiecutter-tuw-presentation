@@ -51,6 +51,6 @@ $(CONDA_ENV_DIR):
 	@echo "... finished."
 
 environment: $(CONDA_ENV_DIR)
-	@echo -e "conda environment is ready. To activate use:\n\tconda activate {{cookiecutter.project_slug}}"
+	$(CONDA_ACTIVATE) {{cookiecutter.project_slug}}
 
 .PHONY: help clean environment 
