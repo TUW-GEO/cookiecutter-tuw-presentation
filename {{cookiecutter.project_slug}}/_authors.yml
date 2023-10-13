@@ -14,4 +14,4 @@ filters:
   - authors-block
 format:     
     pptx:
-      reference-doc: assests/styles/geo-tuwien-template.pptx
+      reference-doc: assets/styles/geo-tuwien-template.pptx

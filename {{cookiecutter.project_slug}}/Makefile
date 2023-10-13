@@ -5,15 +5,19 @@ BASENAME = {{cookiecutter.project_slug}}
 CONDA_ENV_DIR = $(shell conda info --base)/envs/{{cookiecutter.project_slug}}
 CONDA_ACTIVATE = source $$(conda info --base)/etc/profile.d/conda.sh ; conda activate ; conda activate
 
-all: revealjs beamer pptx environment
+all: revealjs beamer pptx
 
 revealjs:
+	$(CONDA_ACTIVATE) {{cookiecutter.project_slug}}
 	quarto render
 
 beamer: $(BASENAME).qmd
+	$(CONDA_ACTIVATE) {{cookiecutter.project_slug}}
+	quarto add --no-prompt kapsner/authors-block
 	quarto render $^ --metadata-file _authors.yml --to beamer
 
 pptx: $(BASENAME).qmd
+	$(CONDA_ACTIVATE) {{cookiecutter.project_slug}}
 	quarto add --no-prompt kapsner/authors-block
 	quarto render $^ --metadata-file _authors.yml --to pptx
 
@@ -51,6 +55,6 @@ $(CONDA_ENV_DIR):
 	@echo "... finished."
 
 environment: $(CONDA_ENV_DIR)
-	$(CONDA_ACTIVATE) {{cookiecutter.project_slug}}
+	@echo -e "conda environment is ready. To activate use:\n\tconda activate drought-tuw"
 
 .PHONY: help clean environment 
