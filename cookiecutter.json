@@ -1,0 +1,11 @@
+{
+  "author": "TU Wien GEO MRS group",
+  "author_email": "remote.sensing@geo.tuwien.ac.at",
+  "project_name": "my-tuw-project",
+  "project_description": "my project description",
+  "url": "",
+  "project_slug": "{{ cookiecutter.project_name.lower().replace(' ', '_').replace('-', '_') }}",
+  "approvaltests_geo_data_root": "",
+  "approvaldata_timestamp": "",
+  "vsc_repo": "gitlab"
+}

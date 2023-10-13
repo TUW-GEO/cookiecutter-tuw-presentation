@@ -1,0 +1,8 @@
+*.svg
+*.html
+.~lock*
+.quarto
+.DS_Store
+/.quarto/
+public/
+/.luarc.json
