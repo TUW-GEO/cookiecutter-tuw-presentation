@@ -5,7 +5,7 @@ BASENAME = {{cookiecutter.project_slug}}
 CONDA_ENV_DIR = $(shell conda info --base)/envs/{{cookiecutter.project_slug}}
 CONDA_ACTIVATE = source $$(conda info --base)/etc/profile.d/conda.sh ; conda activate ; conda activate
 
-all: revealjs beamer pptx
+all: beamer pptx revealjs
 
 revealjs:
 	$(CONDA_ACTIVATE) {{cookiecutter.project_slug}}
