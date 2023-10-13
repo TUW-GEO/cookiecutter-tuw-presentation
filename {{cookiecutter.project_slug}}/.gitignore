@@ -1,8 +1,11 @@
 *.svg
 *.html
+*.pptx
 .~lock*
 .quarto
 .DS_Store
 /.quarto/
 public/
 /.luarc.json
+_extensions.yml
+_extensions/
