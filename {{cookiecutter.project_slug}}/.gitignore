@@ -1,11 +1,20 @@
+# derived files
 *.svg
 *.html
 *.pptx
-.~lock*
-.quarto
-.DS_Store
-/.quarto/
+*.pdf
+*.tex
+!geo-tuwien-template.pptx
 public/
+
+# quarto
+.quarto
 /.luarc.json
 _extensions.yml
 _extensions/
+
+# secrets
+.DS_Store
+
+# general
+.~lock*
