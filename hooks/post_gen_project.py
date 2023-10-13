@@ -13,15 +13,15 @@ def remove_dir(dir):
     shutil.rmtree(os.path.join(PROJECT_DIRECTORY, dir))
 
 
-if __name__ == '__main__':
+# if __name__ == '__main__':
 
-    if not "{{ cookiecutter.approvaltests_geo_data_root }}":
-        remove_file('pytest.ini')
+#     if not "{{ cookiecutter.approvaltests_geo_data_root }}":
+#         remove_file('pytest.ini')
 
-    if "{{ cookiecutter.vsc_repo }}" == 'gitlab':
-        remove_dir(".github")
-    elif "{{ cookiecutter.vsc_repo }}" == 'github':
-        remove_file(".gitlab-ci.yml")
-    else:
-        raise NotImplementedError(
-            "The repository {{ cookiecutter.vsc_repo }} specified in cookiecutter.vsc_repo, is currently not supported.\nSpecify either 'gitlab' or 'github'")
+#     if "{{ cookiecutter.vsc_repo }}" == 'gitlab':
+#         remove_dir(".github")
+#     elif "{{ cookiecutter.vsc_repo }}" == 'github':
+#         remove_file(".gitlab-ci.yml")
+#     else:
+#         raise NotImplementedError(
+#             "The repository {{ cookiecutter.vsc_repo }} specified in cookiecutter.vsc_repo, is currently not supported.\nSpecify either 'gitlab' or 'github'")
