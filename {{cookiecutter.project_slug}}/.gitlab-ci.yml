@@ -18,7 +18,7 @@ pages:
     - quarto check install
     - quarto check jupyter
     - pip install -r requirements.txt
-    - make
+    - make revealjs
   artifacts:
     paths:
       - public

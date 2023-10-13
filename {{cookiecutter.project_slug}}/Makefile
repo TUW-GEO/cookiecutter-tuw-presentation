@@ -5,15 +5,15 @@ BASENAME = {{cookiecutter.project_slug}}
 CONDA_ENV_DIR = $(shell conda info --base)/envs/{{cookiecutter.project_slug}}
 CONDA_ACTIVATE = source $$(conda info --base)/etc/profile.d/conda.sh ; conda activate ; conda activate
 
-all: revealjs beamer pptx
+all: revealjs beamer pptx environment
 
-revealjs: environment
+revealjs:
 	quarto render
 
-beamer: $(BASENAME).qmd environment
+beamer: $(BASENAME).qmd
 	quarto render $^ --metadata-file _authors.yml --to beamer
 
-pptx: $(BASENAME).qmd environment
+pptx: $(BASENAME).qmd
 	quarto add --no-prompt kapsner/authors-block
 	quarto render $^ --metadata-file _authors.yml --to pptx
 
