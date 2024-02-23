@@ -3,12 +3,13 @@ title: "TU Wien GEO MRS group"
 author:
   - {{cookiecutter.author}}
   - Author2
-format: 
+format:
     revealjs:
         logo: assets/images/tuwien-logo.png
-        css: assets/styles/logo.css
+        css: ["assets/styles/xarray.css", "assets/styles/logo.css"]
         output-ext: "html"
         output-file: "index"
+keep-ipynb: true
 ---
 
 # Level 1 slide
