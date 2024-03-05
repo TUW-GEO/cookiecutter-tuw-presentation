@@ -1,5 +1,5 @@
 ---
-title: "TU Wien GEO MRS group"
+title: "TU Wien Research Unit Remote Sensing"
 author:
   - {{cookiecutter.author}}
   - Author2
@@ -9,6 +9,7 @@ format:
         css: ["assets/styles/xarray.css", "assets/styles/logo.css"]
         output-ext: "html"
         output-file: "index"
+        theme: [default, assets/styles/tuwien.scss]
 keep-ipynb: true
 ---
 
@@ -29,6 +30,7 @@ Use normal markdown syntax.
 You can embed executable code like this:
 
 ```{python}
+#| echo: true
 1 + 1
 ```
 
@@ -62,8 +64,6 @@ ax.grid(True)
 plt.show()
 ```
 
-Note that we included the cell option `fold: true` to hide the code by default (click the *Code* button to show it).
-
 ## Two columns
 
 :::: {.columns}
@@ -82,4 +82,30 @@ This is a presentation by TU Wien
 
 ::::
 
-## 
+## Xarray
+
+```{python}
+#| echo: true
+import xarray as xr
+import pandas as pd
+
+data = np.random.rand(4, 3)
+locs = ["IA", "IL", "IN"]
+times = pd.date_range("2000-01-01", periods=4)
+xr.DataArray(data, coords=[times, locs], dims=["time", "space"])
+```
+
+## Dask
+
+```{python}
+#| echo: true
+import dask.array as da
+
+dask_array = da.random.random((10, 10, 10), chunks=(5, 5, 5))
+x_coords = np.linspace(-5, 5, 10)
+y_coords = np.linspace(-5, 5, 10)
+time_coords = pd.date_range('2023-01-01', periods=10)
+coords = {'x': x_coords, 'y': y_coords, 'time': time_coords}
+
+xr.DataArray(dask_array, dims=['x', 'y', 'time'], coords=coords)
+```

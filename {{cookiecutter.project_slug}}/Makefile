@@ -7,35 +7,27 @@ CONDA_ACTIVATE = source $$(conda info --base)/etc/profile.d/conda.sh ; conda act
 
 all: beamer pptx revealjs
 
-revealjs:
+revealjs: $(BASENAME).qmd environment
 	$(CONDA_ACTIVATE) {{cookiecutter.project_slug}}
-	quarto render
+	quarto render $^ --output-dir public
 
-beamer: $(BASENAME).qmd
+beamer: $(BASENAME).qmd environment
 	$(CONDA_ACTIVATE) {{cookiecutter.project_slug}}
 	quarto add --no-prompt kapsner/authors-block
 	quarto render $^ --metadata-file _authors.yml --to beamer
 
-pptx: $(BASENAME).qmd
+pptx: $(BASENAME).qmd environment
 	$(CONDA_ACTIVATE) {{cookiecutter.project_slug}}
 	quarto add --no-prompt kapsner/authors-block
 	quarto render $^ --metadata-file _authors.yml --to pptx
 
 help:
-	@echo "make clean"
-	@echo " clean all python build/compilation files and directories"
+	@echo "make revealjs"
+	@echo " Render revealjs presentation"
 	@echo "make environment"
 	@echo " create the base environment for the project"
-	@echo "make install"
-	@echo " install dependencies in active environment"
-	@echo "make test"
-	@echo " install dependencies for tests in active python environment if necessary and run test with coverage"
-	@echo "make version"
-	@echo " update _version.py with current version tag"
-	@echo "make dist"
-	@echo " build the package ready for distribution and update the version tag"
 
-clean:
+clean: 
 	find . -name '*.pyc' -exec rm --force {} +
 	find . -name '*.pyo' -exec rm --force {} +
 	find . -name '*~' -exec rm --force {} +
@@ -51,7 +43,7 @@ $(CONDA_ENV_DIR):
 	@echo "creating new base {{cookiecutter.project_slug}} conda environment..."
 	conda create -y -c conda-forge -n {{cookiecutter.project_slug}} python=3.9 pip mamba jupyter
 	$(CONDA_ACTIVATE) {{cookiecutter.project_slug}}
-	mamba install -y -c conda-forge matplotlib numpy
+	mamba install -y -c conda-forge matplotlib numpy xarray pandas dask
 	@echo "... finished."
 
 environment: $(CONDA_ENV_DIR)
